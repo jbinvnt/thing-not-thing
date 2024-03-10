@@ -1,0 +1,21 @@
+version: '2.3'
+
+services:
+  torch:
+    build: .
+    command: python3 app.py
+    runtime: nvidia
+    volumes:
+      - ./images:/images:ro
+      - ${CLIP_PATH}:/clip:ro
+    devices:
+      - "/dev/nvidia0:/dev/nvidia0"
+      - "/dev/nvidiactl:/dev/nvidiactl"
+      - "/dev/nvidia-modeset:/dev/nvidia-modeset"
+      - "/dev/nvidia-uvm:/dev/nvidia-uvm"
+      - "/dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools"
+    ipc: host
+    privileged: true
+    network_mode: "host"
+    stdin_open: true
+    tty: true
