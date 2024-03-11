@@ -2,9 +2,13 @@ import torch
 from PIL import Image
 import open_clip
 import gradio as gr
+import os
+
+local_gpu = os.environ["RUN_MODE"] == "local_gpu"
 
 def is_thing(image, name_of_thing, threshold, output_similarity):
-    model, _, preprocess = open_clip.create_model_and_transforms('ViT-L-14', pretrained='/clip/CLIP-ViT-L-14-laion2B-s32B-b82K/open_clip_pytorch_model.bin')
+    model_path = '/clip/CLIP-ViT-L-14-laion2B-s32B-b82K/open_clip_pytorch_model.bin' if local_gpu else 'laion2B_s32B_b82K'
+    model, _, preprocess = open_clip.create_model_and_transforms('ViT-L-14', pretrained=model_path)
     tokenizer = open_clip.get_tokenizer('ViT-L-14')
 
     image = preprocess(image).unsqueeze(0)

@@ -19,3 +19,5 @@ services:
     network_mode: "host"
     stdin_open: true
     tty: true
+    environment:
+      - RUN_MODE=local_gpu
