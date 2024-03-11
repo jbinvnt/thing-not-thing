@@ -28,4 +28,4 @@ docker compose build
 docker compose run torch
 ```
 
-Then go to `https://localhost:7860` in your browser.
+Then go to `http://localhost:7860` in your browser.
