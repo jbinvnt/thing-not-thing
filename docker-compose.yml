@@ -6,7 +6,6 @@ services:
     command: python3 app.py
     runtime: nvidia
     volumes:
-      - ./images:/images:ro
       - ${CLIP_PATH}:/clip:ro
     devices:
       - "/dev/nvidia0:/dev/nvidia0"

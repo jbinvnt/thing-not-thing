@@ -13,7 +13,7 @@ This project uses [OpenCLIP](https://github.com/mlfoundations/open_clip), an ope
 
 ## Try It Yourself!
 
-This project is available as a web demo [here](https://huggingface.co/spaces/jbinvnt/thing-not-thing). But it will be slower than when the project is run locally on a GPU, as explained below.
+This project is available as a web demo [here](https://huggingface.co/spaces/jbinvnt/thing-not-thing). But it will be slower than when the project is run locally on a GPU.
 
 ## Running Locally on a GPU
 
@@ -27,9 +27,11 @@ Tested on [Debian](https://debian.org).
 
 ### Startup
 
+Create a `.env` file which points to the path where you downloaded the OpenCLIP model. Then run:
+
 ```bash
 docker compose build
 docker compose run torch
 ```
 
-Then go to `http://localhost:7860` in your browser.
+Finally, go to `http://localhost:7860` in your browser.
