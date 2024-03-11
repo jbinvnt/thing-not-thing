@@ -4,7 +4,7 @@ import open_clip
 import gradio as gr
 import os
 
-local_gpu = os.environ["RUN_MODE"] == "local_gpu"
+local_gpu = os.environ["RUN_MODE"] == "local_gpu" if "RUN_MODE" in os.environ else False
 
 def is_thing(image, name_of_thing, threshold, output_similarity):
     model_path = '/clip/CLIP-ViT-L-14-laion2B-s32B-b82K/open_clip_pytorch_model.bin' if local_gpu else 'laion2B_s32B_b82K'
@@ -14,7 +14,7 @@ def is_thing(image, name_of_thing, threshold, output_similarity):
     image = preprocess(image).unsqueeze(0)
     text = tokenizer([name_of_thing, ])
 
-    with torch.no_grad(), torch.cuda.amp.autocast():
+    with torch.no_grad(), torch.cuda.amp.autocast() if local_gpu else torch.cpu.amp.autocast():
         image_features = model.encode_image(image)
         text_features = model.encode_text(text)
         image_features /= image_features.norm(dim=-1, keepdim=True)
