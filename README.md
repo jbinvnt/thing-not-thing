@@ -1,5 +1,9 @@
 # Thing/Not Thing
-Zero-shot binary image classifier. ELI5: Type in an object and it predicts whether a photo is that object.
+This is a zero-shot binary image classifier. Type in an object and AI predicts whether it matches the photo.
+
+## How it Works
+
+This project uses [OpenCLIP](https://github.com/mlfoundations/open_clip), an open-source implementation of OpenAI's [CLIP](https://arxiv.org/abs/2103.00020).
 
 ## Examples
 
